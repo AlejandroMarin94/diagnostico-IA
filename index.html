@@ -789,9 +789,10 @@
     if (current > 0) { saveNotes(); current--; render(); }
   }
 
-  // ====== PEGA AQUI LA URL DE TU GOOGLE APPS SCRIPT ======
-  const SCRIPT_URL = "PEGA_AQUI_TU_URL";
-  // ========================================================
+  // ====== SUPABASE ======
+  const SUPABASE_URL = "https://srpwiebuumwoaesvznwd.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_MiJ0duCjOMn6C_YmWmt8Zw_U2Gpf4pY";
+  // =======================
 
   function showThanks() {
     const total = answers.reduce((s, a, i) => s + questions[i].opts[a][1], 0);
@@ -816,14 +817,14 @@
       notes: notes
     };
 
-    if (SCRIPT_URL !== "PEGA_AQUI_TU_URL") {
-      fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(err => console.warn('Error enviando datos:', err));
-    }
+    fetch(SUPABASE_URL + "/rest/v1/diagnosticos", {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).catch(err => console.warn('Error enviando datos:', err));
 
     document.getElementById('quiz-section').style.display = 'none';
     document.getElementById('thanks-name').textContent = clientData.name.split(' ')[0];
