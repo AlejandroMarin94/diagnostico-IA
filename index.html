@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despega tu empresa con IA | Diagnostico gratuito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f0f1a;
+      min-height: 100vh;
+      color: #1a1a1a;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1a1145 0%, #2d1b69 40%, #4a2c8a 70%, #6b3fa0 100%);
+      padding: 3rem 1.5rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(79, 70, 229, 0.1) 0%, transparent 50%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #c4b5fd;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #a78bfa, #c4b5fd, #e9d5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    /* CARD */
+    .card-container {
+      max-width: 640px;
+      margin: -2.5rem auto 3rem;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    /* PROGRESS */
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 6px;
+      background: #f0f0ee;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 6px;
+      background: linear-gradient(90deg, #7c3aed, #a78bfa);
+      border-radius: 3px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .progress-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #7c3aed;
+      white-space: nowrap;
+    }
+
+    /* LABELS */
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      color: #7c3aed;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      background: #f5f3ff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .question-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+    }
+
+    .question-sub {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 1.75rem;
+    }
+
+    /* OPTIONS */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .option:hover {
+      border-color: #c4b5fd;
+      background: #faf5ff;
+      transform: translateY(-1px);
+    }
+
+    .option.selected {
+      border: 2px solid #7c3aed;
+      background: #f5f3ff;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .option-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #d1d5db;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .option.selected .option-radio {
+      border-color: #7c3aed;
+      background: #7c3aed;
+    }
+
+    .option.selected .option-radio::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .option-text {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.5;
+      font-weight: 450;
+    }
+
+    .option.selected .option-text {
+      color: #1a1a1a;
+      font-weight: 500;
+    }
+
+    /* NAV */
+    /* NOTAS */
+    .notes-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .notes-label {
+      font-size: 12px;
+      color: #9ca3af;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .notes-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #7c3aed;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #374151;
+      background: #f5f3ff;
+      outline: none;
+      resize: vertical;
+      min-height: 60px;
+      max-height: 120px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .notes-input:focus {
+      border-color: #5b21b6;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+
+    .notes-input::placeholder { color: #a0a0a0; }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.5rem;
+      border-top: 1px solid #f3f4f6;
+    }
+
+    .nav-info {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    /* BUTTONS */
+    .btn {
+      padding: 11px 24px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn:hover { background: #f9fafb; border-color: #d1d5db; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #6d28d9, #5b21b6);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+      background: #ddd6fe;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* CONTACT FORM */
+    .contact-intro {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .contact-intro .section-label { margin-bottom: 1rem; }
+
+    .contact-intro .question-title {
+      font-size: 22px;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      font-size: 13px;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .contact-form input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #7c3aed;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #1a1a1a;
+      background: #f5f3ff;
+      outline: none;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .contact-form input:focus {
+      border-color: #5b21b6;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+
+    .contact-form input::placeholder { color: #a0a0a0; }
+
+    .contact-form input.invalid {
+      border-color: #ef4444;
+      background: #fef2f2;
+    }
+
+    .contact-form input.invalid:focus {
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+    }
+
+    .field-error {
+      font-size: 12px;
+      color: #ef4444;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .btn-start-wrap {
+      margin-top: 0.5rem;
+    }
+
+    .btn-start-wrap .btn-primary {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+    }
+
+    /* THANKS */
+    .thanks-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .thanks-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+    }
+
+    .thanks-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .thanks-sub {
+      font-size: 15px;
+      color: #6b7280;
+      line-height: 1.7;
+      max-width: 380px;
+    }
+
+    .thanks-sub strong {
+      color: #7c3aed;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ANIMATIONS */
+    .fade-in {
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 480px) {
+      .hero { padding: 2rem 1rem 4rem; }
+      .hero h1 { font-size: 1.65rem; }
+      .card { padding: 1.5rem 1.25rem; }
+      .question-title { font-size: 17px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Haz que tu negocio crezca <span>con Inteligencia Artificial</span> de la mano de Solbyte</h1>
+  </div>
+</div>
+
+<!-- CARD -->
+<div class="card-container">
+<div class="card">
+
+  <!-- PASO 0: DATOS DE CONTACTO -->
+  <div id="contact-section" class="fade-in">
+    <div class="contact-intro">
+      <div class="question-title">Cuéntanos sobre ti</div>
+    </div>
+    <div class="contact-form">
+      <div class="field-group">
+        <div class="field-label">Nombre y apellidos *</div>
+        <input type="text" id="inp-name" placeholder="Ej: María García" oninput="checkContact()" />
+      </div>
+      <div class="field-group">
+        <div class="field-label">Empresa *</div>
+        <input type="text" id="inp-company" placeholder="Ej: Talleres García S.L." oninput="checkContact()" />
+      </div>
+      <div class="form-row">
+        <div class="field-group">
+          <div class="field-label">Email de contacto *</div>
+          <input type="email" id="inp-email" placeholder="maria@empresa.com" oninput="checkContact()" onblur="validateEmail()" />
+          <div class="field-error" id="err-email">Introduce un email válido (ej: nombre@empresa.com)</div>
+        </div>
+        <div class="field-group">
+          <div class="field-label">Teléfono (opcional)</div>
+          <input type="tel" id="inp-phone" placeholder="612 345 678" oninput="formatPhone(this)" onblur="validatePhone()" />
+          <div class="field-error" id="err-phone">Introduce un teléfono válido (9 dígitos)</div>
+        </div>
+      </div>
+      <div class="btn-start-wrap">
+        <button class="btn btn-primary" id="btn-start" onclick="startQuiz()" disabled>
+          Comenzar diagnóstico
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 1-8: PREGUNTAS -->
+  <div id="quiz-section" style="display:none;">
+    <div class="progress-wrap">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress" style="width:0%"></div>
+      </div>
+      <span class="progress-text" id="progress-pct">0%</span>
+    </div>
+    <div class="section-label" id="area-label"></div>
+    <div class="question-title" id="q-title"></div>
+    <div class="question-sub" id="q-sub"></div>
+    <div class="options" id="options-list"></div>
+    <div class="notes-group">
+      <div class="notes-label">Notas adicionales (opcional)</div>
+      <textarea class="notes-input" id="notes-input" placeholder="Si quieres, cuéntanos más detalles sobre tu situación..."></textarea>
+    </div>
+    <div class="nav">
+      <span class="nav-info" id="nav-info"></span>
+      <div style="display:flex; gap:10px;">
+        <button class="btn" id="btn-prev" onclick="prev()" style="display:none;">Anterior</button>
+        <button class="btn btn-primary" id="btn-next" onclick="next()" disabled>Siguiente</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO FINAL: GRACIAS -->
+  <div id="thanks-section" style="display:none;">
+    <div class="thanks-wrap fade-in">
+      <div class="thanks-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="15" stroke="#7c3aed" stroke-width="1.5"/>
+          <path d="M9 16.5l5 5 9-9.5" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="thanks-title">Gracias, <span id="thanks-name"></span></div>
+      <div class="thanks-sub">
+        Hemos recibido tu diagnóstico correctamente.<br><br>
+        Nuestro equipo analizará tus resultados y te enviaremos <strong>recomendaciones personalizadas</strong> a la mayor brevedad.
+      </div>
+      <button class="btn" style="margin-top: 2rem;" onclick="restart()">Realizar otro diagnóstico</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="footer">Diagnóstico de madurez IA — Solbyte</div>
+
+<script>
+  const questions = [
+    {
+      area: "Procesos internos",
+      q: "¿Cómo gestionáis las tareas y proyectos internos?",
+      sub: "Herramientas, flujos de trabajo, organización del equipo",
+      opts: [
+        ["Sin herramientas digitales, todo manual o por email", 0],
+        ["Usamos alguna hoja de cálculo o herramienta básica", 1],
+        ["Tenemos software de gestión pero sin automatizaciones", 2],
+        ["Tenemos flujos automatizados y procesos bien definidos", 3]
+      ]
+    },
+    {
+      area: "Atención al cliente",
+      q: "¿Cómo atendéis a vuestros clientes actualmente?",
+      sub: "Canales de comunicación y tiempo de respuesta",
+      opts: [
+        ["Solo por teléfono o email, todo manual", 0],
+        ["Tenemos algún formulario web o chat básico", 1],
+        ["Usamos CRM o sistema de tickets", 2],
+        ["Tenemos automatizaciones, chatbot o respuestas automáticas", 3]
+      ]
+    },
+    {
+      area: "Marketing digital",
+      q: "¿Cómo gestionáis vuestra presencia digital?",
+      sub: "Web, redes sociales, publicidad online",
+      opts: [
+        ["No tenemos web o está desactualizada", 0],
+        ["Tenemos web pero sin estrategia digital activa", 1],
+        ["Publicamos contenido regularmente y hacemos algo de publicidad", 2],
+        ["Tenemos estrategia digital con analíticas, SEO y campañas optimizadas", 3]
+      ]
+    },
+    {
+      area: "Administración",
+      q: "¿Cómo manejáis la administración y facturación?",
+      sub: "Facturas, presupuestos, cobros, contabilidad",
+      opts: [
+        ["Todo manual, en papel o Excel básico", 0],
+        ["Usamos software de facturación básico", 1],
+        ["Tenemos software integrado con el banco o gestoría", 2],
+        ["Procesos automatizados con alertas, recordatorios y reportes", 3]
+      ]
+    },
+    {
+      area: "Datos e informes",
+      q: "¿Cómo tomáis decisiones de negocio?",
+      sub: "Basadas en datos, intuición, informes...",
+      opts: [
+        ["Por intuición o experiencia, sin datos concretos", 0],
+        ["Revisamos algunas métricas básicas de vez en cuando", 1],
+        ["Tenemos dashboards o informes regulares", 2],
+        ["Usamos datos en tiempo real y análisis predictivo", 3]
+      ]
+    },
+    {
+      area: "Inteligencia Artificial",
+      q: "¿Usáis alguna herramienta de inteligencia artificial?",
+      sub: "IA generativa, automatización inteligente, machine learning...",
+      opts: [
+        ["No usamos ninguna IA ni la conocemos bien", 0],
+        ["Hemos probado ChatGPT u otras IA de forma puntual", 1],
+        ["Usamos IA regularmente en algún área del negocio", 2],
+        ["La IA está integrada en procesos clave de la empresa", 3]
+      ]
+    },
+    {
+      area: "Equipo y formación",
+      q: "¿Qué nivel digital tiene vuestro equipo?",
+      sub: "Formación, adaptabilidad a nuevas herramientas",
+      opts: [
+        ["Resistencia al cambio, poca formación digital", 0],
+        ["Nivel básico, aprenden lo necesario", 1],
+        ["Equipo con buena base digital y abierto a aprender", 2],
+        ["Equipo proactivo, formado y que propone mejoras digitales", 3]
+      ]
+    },
+    {
+      area: "Integración de sistemas",
+      q: "¿Vuestras herramientas digitales están conectadas entre sí?",
+      sub: "CRM, web, email, contabilidad, etc.",
+      opts: [
+        ["Usamos herramientas separadas sin conexión", 0],
+        ["Alguna conexión manual entre herramientas", 1],
+        ["Algunas herramientas se sincronizan automáticamente", 2],
+        ["Ecosistema digital integrado con datos unificados", 3]
+      ]
+    }
+  ];
+
+  let current = 0;
+  let answers = new Array(questions.length).fill(null);
+  let notes = new Array(questions.length).fill('');
+  let clientData = {};
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function isValidPhone(phone) {
+    if (!phone) return true;
+    const digits = phone.replace(/\s/g, '');
+    return /^\d{9}$/.test(digits);
+  }
+
+  function validateEmail() {
+    const inp = document.getElementById('inp-email');
+    const err = document.getElementById('err-email');
+    const val = inp.value.trim();
+    if (val && !isValidEmail(val)) {
+      inp.classList.add('invalid');
+      err.style.display = 'block';
+    } else {
+      inp.classList.remove('invalid');
+      err.style.display = 'none';
+    }
+  }
+
+  function validatePhone() {
+    const inp = document.getElementById('inp-phone');
+    const err = document.getElementById('err-phone');
+    const val = inp.value.trim();
+    if (val && !isValidPhone(val)) {
+      inp.classList.add('invalid');
+      err.style.display = 'block';
+    } else {
+      inp.classList.remove('invalid');
+      err.style.display = 'none';
+    }
+  }
+
+  function formatPhone(inp) {
+    let digits = inp.value.replace(/\D/g, '').slice(0, 9);
+    if (digits.length > 6) {
+      inp.value = digits.slice(0,3) + ' ' + digits.slice(3,6) + ' ' + digits.slice(6);
+    } else if (digits.length > 3) {
+      inp.value = digits.slice(0,3) + ' ' + digits.slice(3);
+    } else {
+      inp.value = digits;
+    }
+    validatePhone();
+  }
+
+  function checkContact() {
+    const name = document.getElementById('inp-name').value.trim();
+    const email = document.getElementById('inp-email').value.trim();
+    const company = document.getElementById('inp-company').value.trim();
+    const emailOk = isValidEmail(email);
+    const phoneOk = isValidPhone(document.getElementById('inp-phone').value.trim());
+    document.getElementById('btn-start').disabled = !(name && emailOk && company && phoneOk);
+  }
+
+  function startQuiz() {
+    clientData = {
+      name: document.getElementById('inp-name').value.trim(),
+      company: document.getElementById('inp-company').value.trim(),
+      email: document.getElementById('inp-email').value.trim(),
+      phone: document.getElementById('inp-phone').value.trim() || 'No indicado',
+    };
+    document.getElementById('contact-section').style.display = 'none';
+    document.getElementById('quiz-section').style.display = 'block';
+    document.getElementById('quiz-section').classList.add('fade-in');
+    render();
+  }
+
+  function saveNotes() {
+    notes[current] = document.getElementById('notes-input').value.trim();
+  }
+
+  function render() {
+    const q = questions[current];
+    const pct = Math.round((current / questions.length) * 100);
+    document.getElementById('area-label').textContent = q.area;
+    document.getElementById('q-title').textContent = q.q;
+    document.getElementById('q-sub').textContent = q.sub;
+    document.getElementById('nav-info').textContent = `Pregunta ${current + 1} de ${questions.length}`;
+    document.getElementById('progress').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('btn-prev').style.display = current > 0 ? 'inline-block' : 'none';
+    document.getElementById('notes-input').value = '';
+    const isLast = current === questions.length - 1;
+    document.getElementById('btn-next').textContent = isLast ? 'Enviar diagnóstico' : 'Siguiente';
+    document.getElementById('btn-next').disabled = answers[current] === null;
+
+    const list = document.getElementById('options-list');
+    list.innerHTML = '';
+    q.opts.forEach(([text], i) => {
+      const div = document.createElement('div');
+      div.className = 'option' + (answers[current] === i ? ' selected' : '');
+      div.innerHTML = `<span class="option-radio"></span><span class="option-text">${text}</span>`;
+      div.onclick = () => select(i);
+      list.appendChild(div);
+    });
+  }
+
+  function select(i) {
+    answers[current] = i;
+    document.querySelectorAll('.option').forEach((el, idx) => {
+      el.className = 'option' + (idx === i ? ' selected' : '');
+    });
+    document.getElementById('btn-next').disabled = false;
+  }
+
+  function next() {
+    if (answers[current] === null) return;
+    saveNotes();
+    if (current < questions.length - 1) {
+      current++;
+      render();
+    } else {
+      showThanks();
+    }
+  }
+
+  function prev() {
+    if (current > 0) { saveNotes(); current--; render(); }
+  }
+
+  // ====== PEGA AQUI LA URL DE TU GOOGLE APPS SCRIPT ======
+  const SCRIPT_URL = "PEGA_AQUI_TU_URL";
+  // ========================================================
+
+  function showThanks() {
+    const total = answers.reduce((s, a, i) => s + questions[i].opts[a][1], 0);
+    const max = questions.length * 3;
+    const pct = Math.round(total / max * 100);
+    const areaScores = questions.map((q, i) => Math.round(answers[i] / 3 * 100));
+
+    let level;
+    if (pct < 30) level = 'Nivel 0 — Sin automatización';
+    else if (pct < 55) level = 'Nivel 1 — Automatización básica';
+    else if (pct < 75) level = 'Nivel 2 — Madurez intermedia';
+    else level = 'Nivel 3 — Alta madurez IA';
+
+    const payload = {
+      name: clientData.name,
+      company: clientData.company,
+      email: clientData.email,
+      phone: clientData.phone,
+      pct: pct,
+      level: level,
+      areas: areaScores,
+      notes: notes
+    };
+
+    if (SCRIPT_URL !== "PEGA_AQUI_TU_URL") {
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(err => console.warn('Error enviando datos:', err));
+    }
+
+    document.getElementById('quiz-section').style.display = 'none';
+    document.getElementById('thanks-name').textContent = clientData.name.split(' ')[0];
+    document.getElementById('thanks-section').style.display = 'block';
+  }
+
+  function restart() {
+    current = 0;
+    answers = new Array(questions.length).fill(null);
+    notes = new Array(questions.length).fill('');
+    clientData = {};
+    document.getElementById('inp-name').value = '';
+    document.getElementById('inp-company').value = '';
+    document.getElementById('inp-email').value = '';
+    document.getElementById('inp-phone').value = '';
+    document.getElementById('btn-start').disabled = true;
+    document.getElementById('thanks-section').style.display = 'none';
+    document.getElementById('contact-section').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
