@@ -798,7 +798,6 @@
     const total = answers.reduce((s, a, i) => s + questions[i].opts[a][1], 0);
     const max = questions.length * 3;
     const pct = Math.round(total / max * 100);
-    const areaScores = questions.map((q, i) => Math.round(answers[i] / 3 * 100));
 
     let level;
     if (pct < 30) level = 'Nivel 0 — Sin automatización';
@@ -806,16 +805,19 @@
     else if (pct < 75) level = 'Nivel 2 — Madurez intermedia';
     else level = 'Nivel 3 — Alta madurez IA';
 
+    const keys = ['procesos', 'atencion', 'marketing', 'admin', 'datos', 'ia', 'equipo', 'integracion'];
     const payload = {
-      name: clientData.name,
-      company: clientData.company,
+      nombre: clientData.name,
+      empresa: clientData.company,
       email: clientData.email,
-      phone: clientData.phone,
-      pct: pct,
-      level: level,
-      areas: areaScores,
-      notes: notes
+      telefono: clientData.phone,
+      puntuacion: pct,
+      nivel: level
     };
+    keys.forEach((key, i) => {
+      payload[key + '_resp'] = questions[i].opts[answers[i]][0];
+      payload[key + '_nota'] = notes[i] || '';
+    });
 
     fetch(SUPABASE_URL + "/rest/v1/diagnosticos", {
       method: 'POST',
