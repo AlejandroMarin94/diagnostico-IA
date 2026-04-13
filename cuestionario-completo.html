@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cuestionario - Diagnóstico de Madurez IA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      padding: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px 24px;
+      background: #0F0F0F;
+      border-radius: 12px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #8FD6FF;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: #999999;
+    }
+
+    .page {
+      margin-bottom: 36px;
+      padding: 24px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      page-break-inside: avoid;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .page-number {
+      background: linear-gradient(135deg, #8FD6FF, #66D9FF);
+      color: #0F0F0F;
+      font-size: 13px;
+      font-weight: 700;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .area-label {
+      font-size: 12px;
+      color: #0a7ab5;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      background: #e8f6ff;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .question {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 16px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .option-radio {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid #d1d5db;
+      flex-shrink: 0;
+    }
+
+    .notes-area {
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px dashed #e5e7eb;
+    }
+
+    .notes-label {
+      font-size: 11px;
+      color: #9ca3af;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .notes-box {
+      width: 100%;
+      height: 40px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .contact-page .field {
+      margin-bottom: 14px;
+    }
+
+    .contact-page .field-label {
+      font-size: 13px;
+      color: #818181;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .contact-page .field-box {
+      width: 100%;
+      height: 36px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: #999999;
+      margin-top: 30px;
+      padding: 16px;
+      background: #0F0F0F;
+      border-radius: 8px;
+    }
+
+    @media print {
+      body { padding: 20px; }
+      .page { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Diagnóstico de Madurez IA - Solbyte</h1>
+    <p>Cuestionario completo: datos de contacto + 8 preguntas de evaluación</p>
+  </div>
+
+  <!-- DATOS DE CONTACTO -->
+  <div class="page contact-page">
+    <div class="page-header">
+      <div class="page-number">0</div>
+      <span class="area-label">Datos de contacto</span>
+    </div>
+    <div class="question">Cuéntanos sobre ti</div>
+    <div class="subtitle" style="margin-bottom: 20px;">Información del cliente antes de iniciar el diagnóstico</div>
+    <div class="field">
+      <div class="field-label">Nombre y apellidos *</div>
+      <div class="field-box"></div>
+    </div>
+    <div class="field">
+      <div class="field-label">Empresa *</div>
+      <div class="field-box"></div>
+    </div>
+    <div class="field">
+      <div class="field-label">Email de contacto *</div>
+      <div class="field-box"></div>
+    </div>
+    <div class="field">
+      <div class="field-label">Teléfono (opcional)</div>
+      <div class="field-box"></div>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 1 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="page-number">1</div>
+      <span class="area-label">Procesos internos</span>
+    </div>
+    <div class="question">¿Cómo gestionáis las tareas y proyectos internos?</div>
+    <div class="subtitle">Herramientas, flujos de trabajo, organización del equipo</div>
+    <div class="options">
+      <div class="option"><span class="option-radio"></span> Sin herramientas digitales, todo manual o por email</div>
+      <div class="option"><span class="option-radio"></span> Usamos alguna hoja de cálculo o herramienta básica</div>
+      <div class="option"><span class="option-radio"></span> Tenemos software de gestión pero sin automatizaciones</div>
+      <div class="option"><span class="option-radio"></span> Tenemos flujos automatizados y procesos bien definidos</div>
+    </div>
+    <div class="notes-area">
+      <div class="notes-label">Notas adicionales (opcional)</div>
+      <div class="notes-box"></div>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 2 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="page-number">2</div>
+      <span class="area-label">Atención al cliente</span>
+    </div>
+    <div class="question">¿Cómo atendéis a vuestros clientes actualmente?</div>
+    <div class="subtitle">Canales de comunicación y tiempo de respuesta</div>
+    <div class="options">
+      <div class="option"><span class="option-radio"></span> Solo por teléfono o email, todo manual</div>
+      <div class="option"><span class="option-radio"></span> Tenemos algún formulario web o chat básico</div>
+      <div class="option"><span class="option-radio"></span> Usamos CRM o sistema de tickets</div>
+      <div class="option"><span class="option-radio"></span> Tenemos automatizaciones, chatbot o respuestas automáticas</div>
+    </div>
+    <div class="notes-area">
+      <div class="notes-label">Notas adicionales (opcional)</div>
+      <div class="notes-box"></div>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 3 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="page-number">3</div>
+      <span class="area-label">Marketing digital</span>
+    </div>
+    <div class="question">¿Cómo gestionáis vuestra presencia digital?</div>
+    <div class="subtitle">Web, redes sociales, publicidad online</div>
+    <div class="options">
+      <div class="option"><span class="option-radio"></span> No tenemos web o está desactualizada</div>
+      <div class="option"><span class="option-radio"></span> Tenemos web pero sin estrategia digital activa</div>
+      <div class="option"><span class="option-radio"></span> Publicamos contenido regularmente y hacemos algo de publicidad</div>
+      <div class="option"><span class="option-radio"></span> Tenemos estrategia digital con analíticas, SEO y campañas optimizadas</div>
+    </div>
+    <div class="notes-area">
+      <div class="notes-label">Notas adicionales (opcional)</div>
+      <div class="notes-box"></div>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 4 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="page-number">4</div>
+      <span class="area-label">Administración</span>
+    </div>
+    <div class="question">¿Cómo manejáis la administración y facturación?</div>
+    <div class="subtitle">Facturas, presupuestos, cobros, contabilidad</div>
+    <div class="options">
+      <div class="option"><span class="option-radio"></span> Todo manual, en papel o Excel básico</div>
+      <div class="option"><span class="option-radio"></span> Usamos software de facturación básico</div>
+      <div class="option"><span class="option-radio"></span> Tenemos software integrado con el banco o gestoría</div>
+      <div class="option"><span class="option-radio"></span> Procesos automatizados con alertas, recordatorios y reportes</div>
+    </div>
+    <div class="notes-area">
+      <div class="notes-label">Notas adicionales (opcional)</div>
+      <div class="notes-box"></div>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 5 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="page-number">5</div>
+      <span class="area-label">Datos e informes</span>
+    </div>
+    <div class="question">¿Cómo tomáis decisiones de negocio?</div>
+    <div class="subtitle">Basadas en datos, intuición, informes...</div>
+    <div class="options">
+      <div class="option"><span class="option-radio"></span> Por intuición o experiencia, sin datos concretos</div>
+      <div class="option"><span class="option-radio"></span> Revisamos algunas métricas básicas de vez en cuando</div>
+      <div class="option"><span class="option-radio"></span> Tenemos dashboards o informes regulares</div>
+      <div class="option"><span class="option-radio"></span> Usamos datos en tiempo real y análisis predictivo</div>
+    </div>
+    <div class="notes-area">
+      <div class="notes-label">Notas adicionales (opcional)</div>
+      <div class="notes-box"></div>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 6 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="page-number">6</div>
+      <span class="area-label">Inteligencia Artificial</span>
+    </div>
+    <div class="question">¿Usáis alguna herramienta de inteligencia artificial?</div>
+    <div class="subtitle">IA generativa, automatización inteligente, machine learning...</div>
+    <div class="options">
+      <div class="option"><span class="option-radio"></span> No usamos ninguna IA ni la conocemos bien</div>
+      <div class="option"><span class="option-radio"></span> Hemos probado ChatGPT u otras IA de forma puntual</div>
+      <div class="option"><span class="option-radio"></span> Usamos IA regularmente en algún área del negocio</div>
+      <div class="option"><span class="option-radio"></span> La IA está integrada en procesos clave de la empresa</div>
+    </div>
+    <div class="notes-area">
+      <div class="notes-label">Notas adicionales (opcional)</div>
+      <div class="notes-box"></div>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 7 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="page-number">7</div>
+      <span class="area-label">Equipo y formación</span>
+    </div>
+    <div class="question">¿Qué nivel digital tiene vuestro equipo?</div>
+    <div class="subtitle">Formación, adaptabilidad a nuevas herramientas</div>
+    <div class="options">
+      <div class="option"><span class="option-radio"></span> Resistencia al cambio, poca formación digital</div>
+      <div class="option"><span class="option-radio"></span> Nivel básico, aprenden lo necesario</div>
+      <div class="option"><span class="option-radio"></span> Equipo con buena base digital y abierto a aprender</div>
+      <div class="option"><span class="option-radio"></span> Equipo proactivo, formado y que propone mejoras digitales</div>
+    </div>
+    <div class="notes-area">
+      <div class="notes-label">Notas adicionales (opcional)</div>
+      <div class="notes-box"></div>
+    </div>
+  </div>
+
+  <!-- PREGUNTA 8 -->
+  <div class="page">
+    <div class="page-header">
+      <div class="page-number">8</div>
+      <span class="area-label">Integración de sistemas</span>
+    </div>
+    <div class="question">¿Vuestras herramientas digitales están conectadas entre sí?</div>
+    <div class="subtitle">CRM, web, email, contabilidad, etc.</div>
+    <div class="options">
+      <div class="option"><span class="option-radio"></span> Usamos herramientas separadas sin conexión</div>
+      <div class="option"><span class="option-radio"></span> Alguna conexión manual entre herramientas</div>
+      <div class="option"><span class="option-radio"></span> Algunas herramientas se sincronizan automáticamente</div>
+      <div class="option"><span class="option-radio"></span> Ecosistema digital integrado con datos unificados</div>
+    </div>
+    <div class="notes-area">
+      <div class="notes-label">Notas adicionales (opcional)</div>
+      <div class="notes-box"></div>
+    </div>
+  </div>
+
+  <div class="footer" style="color: #8FD6FF;">Diagnóstico de Madurez IA — Solbyte</div>
+
+</body>
+</html>
