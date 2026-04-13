@@ -19,12 +19,17 @@
     /* (hero removed - content moved to site-header) */
 
     /* CARD */
-    .card-container {
-      max-width: 640px;
-      margin: 2rem auto 3rem;
-      padding: 0 1rem;
+    .solid-bg {
+      background: #0F0F0F;
       position: relative;
       z-index: 2;
+      padding-bottom: 1px;
+    }
+
+    .card-container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 2rem 1rem 3rem;
     }
 
     .card {
@@ -384,6 +389,9 @@
       padding: 1.5rem;
       font-size: 12px;
       color: #818181;
+      background: #0F0F0F;
+      position: relative;
+      z-index: 2;
     }
 
     /* ANIMATIONS */
@@ -462,9 +470,7 @@
       66% { transform: translate(-30px, -20px) scale(0.95); }
     }
 
-    .site-header { z-index: 10; position: relative; }
-    .card-container { z-index: 2; position: relative; }
-    .footer { z-index: 1; position: relative; }
+    .site-header { z-index: 5; position: relative; }
 
     /* HEADER / LOGO */
     .site-header {
@@ -485,7 +491,7 @@
 
     .site-header h1 {
       flex: 1;
-      font-size: 1.3rem;
+      font-size: 1.7rem;
       font-weight: 700;
       color: #fff;
       line-height: 1.3;
@@ -526,8 +532,11 @@
 <!-- HEADER -->
 <div class="site-header">
   <img src="logo-solbyte.png" alt="Solbyte">
-  <h1>Haz que tu negocio crezca <span>con Inteligencia Artificial</span> de la mano de Solbyte</h1>
+  <h1>Haz que tu negocio crezca <span>con Inteligencia Artificial</span><br>de la mano de Solbyte</h1>
 </div>
+
+<!-- SOLID BG SECTION -->
+<div class="solid-bg">
 
 <!-- CARD -->
 <div class="card-container">
@@ -614,6 +623,8 @@
 </div>
 
 <div class="footer">Diagnóstico de madurez IA — Solbyte</div>
+
+</div><!-- /solid-bg -->
 
 <script>
   const questions = [
