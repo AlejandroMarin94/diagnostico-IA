@@ -16,59 +16,12 @@
       color: #FFFFFF;
     }
 
-    /* HERO */
-    .hero {
-      background: #0F0F0F;
-      padding: 3rem 1.5rem 5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(143, 214, 255, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 30%, rgba(102, 217, 255, 0.05) 0%, transparent 50%);
-      animation: pulse 8s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.05); opacity: 1; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .hero h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, #8FD6FF, #66D9FF);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    /* (hero removed - content moved to site-header) */
 
     /* CARD */
     .card-container {
       max-width: 640px;
-      margin: -2.5rem auto 3rem;
+      margin: 2rem auto 3rem;
       padding: 0 1rem;
       position: relative;
       z-index: 2;
@@ -509,7 +462,7 @@
       66% { transform: translate(-30px, -20px) scale(0.95); }
     }
 
-    .hero { z-index: 1; position: relative; }
+    .site-header { z-index: 10; position: relative; }
     .card-container { z-index: 2; position: relative; }
     .footer { z-index: 1; position: relative; }
 
@@ -517,18 +470,39 @@
     .site-header {
       position: relative;
       z-index: 10;
-      padding: 1.5rem 2rem;
+      padding: 1.5rem 2rem 3rem;
+      background: rgba(15, 15, 15, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .site-header img {
       height: 35px;
       display: block;
+      margin-bottom: 2rem;
+    }
+
+    .site-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .site-header h1 span {
+      background: linear-gradient(135deg, #8FD6FF, #66D9FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     /* RESPONSIVE */
     @media (max-width: 480px) {
-      .hero { padding: 2rem 1rem 4rem; }
-      .hero h1 { font-size: 1.65rem; }
+      .site-header h1 { font-size: 1.65rem; }
       .card { padding: 1.5rem 1.25rem; }
       .question-title { font-size: 17px; }
       .form-row { grid-template-columns: 1fr; }
@@ -549,13 +523,7 @@
 <!-- HEADER -->
 <div class="site-header">
   <img src="logo-solbyte.png" alt="Solbyte">
-</div>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-content">
-    <h1>Haz que tu negocio crezca <span>con Inteligencia Artificial</span> de la mano de Solbyte</h1>
-  </div>
+  <h1>Haz que tu negocio crezca <span>con Inteligencia Artificial</span> de la mano de Solbyte</h1>
 </div>
 
 <!-- CARD -->
