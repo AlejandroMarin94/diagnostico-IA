@@ -443,6 +443,76 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* ANIMATED BG */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+    }
+
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #8FD6FF, transparent 70%);
+      top: 10%;
+      left: -5%;
+      animation: float1 12s ease-in-out infinite;
+    }
+
+    .blob-2 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, #66D9FF, transparent 70%);
+      top: 50%;
+      right: -10%;
+      animation: float2 15s ease-in-out infinite;
+    }
+
+    .blob-3 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #8FD6FF, transparent 70%);
+      bottom: 5%;
+      left: 20%;
+      animation: float3 18s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(60px, 40px) scale(1.1); }
+      50% { transform: translate(20px, 80px) scale(0.95); }
+      75% { transform: translate(-30px, 30px) scale(1.05); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(-50px, -30px) scale(1.05); }
+      50% { transform: translate(-80px, 20px) scale(1.1); }
+      75% { transform: translate(-20px, -50px) scale(0.9); }
+    }
+
+    @keyframes float3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(40px, -40px) scale(1.1); }
+      66% { transform: translate(-30px, -20px) scale(0.95); }
+    }
+
+    .hero { z-index: 1; position: relative; }
+    .card-container { z-index: 2; position: relative; }
+    .footer { z-index: 1; position: relative; }
+
     /* RESPONSIVE */
     @media (max-width: 480px) {
       .hero { padding: 2rem 1rem 4rem; }
@@ -454,6 +524,13 @@
   </style>
 </head>
 <body>
+
+<!-- ANIMATED BACKGROUND -->
+<div class="animated-bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
 
 <!-- HERO -->
 <div class="hero">
