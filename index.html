@@ -470,7 +470,9 @@
     .site-header {
       position: relative;
       z-index: 10;
-      padding: 1.5rem 2rem 3rem;
+      display: flex;
+      align-items: center;
+      padding: 1.2rem 2rem;
       background: rgba(15, 15, 15, 0.45);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -478,19 +480,18 @@
 
     .site-header img {
       height: 35px;
-      display: block;
-      margin-bottom: 2rem;
+      flex-shrink: 0;
     }
 
     .site-header h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
+      flex: 1;
+      font-size: 1.3rem;
+      font-weight: 700;
       color: #fff;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
       text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
+      padding-right: 100px;
     }
 
     .site-header h1 span {
@@ -502,7 +503,9 @@
 
     /* RESPONSIVE */
     @media (max-width: 480px) {
-      .site-header h1 { font-size: 1.65rem; }
+      .site-header { flex-wrap: wrap; padding: 1rem; }
+      .site-header img { height: 25px; margin-bottom: 0.75rem; }
+      .site-header h1 { font-size: 1rem; padding-right: 0; width: 100%; }
       .card { padding: 1.5rem 1.25rem; }
       .question-title { font-size: 17px; }
       .form-row { grid-template-columns: 1fr; }
