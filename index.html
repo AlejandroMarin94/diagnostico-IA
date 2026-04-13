@@ -404,7 +404,7 @@
 
     /* ANIMATED BG */
     .animated-bg {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
@@ -468,28 +468,31 @@
       66% { transform: translate(-30px, -20px) scale(0.95); }
     }
 
-    .site-header { z-index: 5; position: relative; }
-
     /* HEADER / LOGO */
     .site-header {
       position: relative;
-      z-index: 10;
+      z-index: 2;
       display: flex;
       align-items: center;
       padding: 1.2rem 2rem;
       background: rgba(15, 15, 15, 0.45);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      overflow: hidden;
       gap: 1rem;
     }
 
     .site-header img {
       height: 35px;
       flex-shrink: 0;
+      position: relative;
+      z-index: 1;
     }
 
     .site-header h1 {
       flex: 1;
+      position: relative;
+      z-index: 1;
       font-size: 1.7rem;
       font-weight: 700;
       color: #fff;
@@ -521,15 +524,13 @@
 </head>
 <body>
 
-<!-- ANIMATED BACKGROUND -->
-<div class="animated-bg">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
-</div>
-
 <!-- HEADER -->
 <div class="site-header">
+  <div class="animated-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
   <img src="logo-solbyte.png" alt="Solbyte">
   <h1>Haz que tu negocio crezca <span>con Inteligencia Artificial</span><br>de la mano de Solbyte</h1>
 </div>
